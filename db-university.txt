@@ -1,0 +1,70 @@
+1. Selezionare tutti gli insegnanti ✔️
+SELECT * FROM `teachers`;
+
+2. Selezionare tutti i referenti per ogni dipartimento ✔️
+SELECT `name`, `head_of_department`
+FROM `departments`;
+
+3.Selezionare tutti gli studenti il cui nome inizia per "E" (3046) (373)
+SELECT *
+FROM `students`
+WHERE `name` LIKE 'E%';
+
+4. Selezionare tutti gli studenti che si sono iscritti nel 2021 (734) ✔️
+SELECT * 
+FROM `students`
+WHERE YEAR (`enrolment_date`) = 2021;
+
+5.Selezionare tutti i corsi che non hanno un sito web (676)✔️
+SELECT * 
+FROM `courses`
+WHERE `website` IS NULL; 
+
+6. Selezionare tutti gli insegnanti che hanno un numero di telefono (50)✔️
+SELECT * 
+FROM `teachers`
+WHERE `phone` IS NOT NULL;
+
+7. Selezionare tutti gli appelli d'esame dei mesi di giugno e luglio 2020 (2634) (1317)
+SELECT * FROM `exams` WHERE `date` BETWEEN '2020-06-01' AND '2020-07-01';
+
+8.Qual è il numero totale degli studenti iscritti? (5000)✔️
+SELECT COUNT(*) AS `iscrizioni_totali` FROM `students`;
+
+-------------------------------------------------------------------------------------------------------------------
+
+1.Selezionare tutti gli studenti nati nel 1990 (160) ✔️
+SELECT * 
+FROM `students`
+WHERE YEAR (`date_of_birth`) = 1990;
+
+2. Selezionare tutti i corsi che valgono più di 10 crediti (479) ✔️
+SELECT * FROM `courses` WHERE `cfu` > 10;
+
+3. Selezionare tutti gli studenti che hanno più di 30 anni (3046) (3407) ✔️
+SELECT * FROM students WHERE date_of_birth < "1992-06-17";
+
+
+SELECT `id`, `name`, `surname`, `date_of_birth`
+FROM `students`
+WHERE TIMESTAMPDIFF(YEAR,`date_of_birth`, CURDATE()) >30;
+
+4. Selezionare tutti i corsi del primo semestre del primo anno di un qualsiasi corso di
+laurea (286) ✔️
+SELECT * FROM `courses` WHERE `period` = 'I semestre' AND `year` =1;
+
+5. Selezionare tutti gli appelli d'esame che avvengono nel pomeriggio (dopo le 14) del
+20/06/2020 (21) ✔️
+SELECT * FROM `exams` WHERE `date` ='2020-06-20' AND `hour` > '14:00:00';
+
+OPPURE:
+AND HOUR(`hour`) >14;
+
+6. Selezionare tutti i corsi di laurea magistrale (38)✔️
+SELECT * FROM `degrees` WHERE `level` = 'magistrale';
+
+Da quanti dipartimenti è composta l'università? (12)✔️
+SELECT COUNT(*) FROM `departments`;
+
+8. Quanti sono gli insegnanti che non hanno un numero di telefono? (50)✔️
+SELECT * FROM `teachers` WHERE `phone` IS NULL;
